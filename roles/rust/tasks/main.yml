@@ -1,10 +1,21 @@
 - name:  rustup
+  tags: rust
   ansible.builtin.uri:
     url: https://sh.rustup.rs
     return_content: yes
   register: rustup_installer
 
 - name: Run rustup installer
+  tags: rust
   ansible.builtin.shell:
     cmd: sh -s -- -y
     stdin: "{{ rustup_installer.content }}"
+
+- name: Install cargo packages
+  tags: rust
+  loop:
+    - eza
+    - stylua
+    - tree-sitter-cli
+  ansible.builtin.shell:
+    cmd: cargo install "{{ item }}"
