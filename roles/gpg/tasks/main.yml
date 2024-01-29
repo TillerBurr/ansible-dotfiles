@@ -1,0 +1,17 @@
+- name: Copy GPG key
+  tags: gpg
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/tillerburr.gpg"
+    dest: "{{ ansible_env.HOME }}/tillerburr.gpg"
+
+- name: Import GPG key
+  tags: gpg
+  ansible.builtin.command: >
+    gpg --batch
+    --passphrase {{ gpg_passphrase }}
+    --pinentry-mode loopback
+    --import "{{ ansible_env.HOME }}/tillerburr.gpg"
+- name: Clean key
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/tillerburr.gpg"
+    state: absent

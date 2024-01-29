@@ -2,6 +2,11 @@
   hosts: localhost
   vars:
     windows_user: tbaur
+  vars_prompt:
+    - name: gpg_passphrase
+      prompt: "GPG passphrase"
+      private: true
+
   pre_tasks:
   - name: Update apt
     become: true
@@ -48,6 +53,11 @@
       tags: ssh
       import_role:
         name: ssh
+
+    - name: GPG
+      tags: gpg
+      import_role:
+        name: gpg
 
     - name: Copy local git config
       copy:
