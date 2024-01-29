@@ -1,0 +1,54 @@
+- name: Install AWS CLI and SSM
+  become: true
+  tags: work
+  block:
+    - name: Install AWSW CLI
+      ansible.builtin.get_url:
+        url: "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
+        dest: "/tmp/awscli.zip"
+        remote_src: true
+
+    - name: Unzip AWS CLI
+      ansible.builtin.unarchive:
+        src: "/tmp/awscli.zip"
+        dest: "/tmp"
+
+    - name: Install AWS CLI
+      ansible.builtin.shell:
+        name: "/tmp/aws/install"
+
+    - name: install AWS SSM
+      ansible.builtin.get_url:
+        url: https://s3.amazonaws.com/session-manager-downloads/plugin/latest/linux_64bit/session-manager-plugin.deb\
+        dest: /tmp/session-manager-plugin.deb
+
+    - name: Unzip AWS SSM
+      ansible.builtin.unarchive:
+        src: /tmp/session-manager-plugin.deb
+        dest: /tmp
+    - name: Install AWS SSM
+      ansible.builtin.shell:
+        name: dpkg -i /tmp/session-manager-plugin
+- name: Install Github CLI
+  become: true
+  tags: work
+  block:
+    - name: Install Github CLI
+      ansible.builtin.get_url:
+        url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+        dest: /usr/share/keyrings/githubcli-archive-keyring.gpg
+        remote_src: true
+    - name: Set DPKG architecture
+      set_fact:
+        dpkg_arch: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
+    - name: Add Github CLI repo
+      ansible.builtin.apt_repository:
+        repo: 'deb [arch={{dpkg_arch}} signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main'
+        update_cache: true
+    - name: Install Github CLI
+      ansible.builtin.apt:
+        name:
+          - gh
+
+- name: Install Lazygit
+  import_task: lazygit.yml

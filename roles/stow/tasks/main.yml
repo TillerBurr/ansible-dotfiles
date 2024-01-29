@@ -1,0 +1,10 @@
+- name: Install stow
+  become: true
+  apt:
+    name: stow
+    state: present
+
+- name: Run Stow
+  shell: "stow . --target {{ ansible_env.HOME }} --verbose=2"
+  register: result
+  changed_when: 'result.stderr is search("LINK: ")'

@@ -1,0 +1,20 @@
+- name: Install Wezterm
+  tags: wezterm
+  become: true
+  block:
+    - name: Get Wezterm key
+      ansible.builtin.get_url:
+        url: https://apt.fury.io/wez/gpg.key
+        dest: /usr/share/keyrings/wezterm-fury.asc
+    - name: Add Wezterm repo
+      ansible.builtin.apt_repository:
+        repo: 'deb [signed-by=/usr/share/keyrings/wezterm-fury.asc] https://apt.fury.io/wez/ * *'
+        update_cache: true
+    - name: Install Wezterm
+      ansible.builtin.apt:
+        name:
+          - wezterm-nightly
+
+- name: WSL
+  import_tasks: wsl.yml
+  when: ansible_kernel is search("microsoft")

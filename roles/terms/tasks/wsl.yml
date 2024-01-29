@@ -1,0 +1,18 @@
+- name: move wezterm.lua to windows
+  ansible.builtin.copy:
+    src: files/.wezterm-wsl.lua
+    dest: "/mnt/c/Users/{{windows_user}}/.wezterm.lua"
+
+- name: move .wslconfig to windows
+  ansible.builtin.copy:
+    src: files/.wslconfig
+    dest: "/mnt/c/Users/{{windows_user}}/.wslconfig"
+
+- name: Install win32yank 64-bit from GitHub
+  unarchive:
+    src: https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
+    dest: "{{ ansible_env.HOME }}/.local/bin"
+    remote_src: true
+    mode: "u+x"
+    include:
+      - win32yank.exe

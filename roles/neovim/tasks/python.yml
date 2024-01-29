@@ -1,0 +1,9 @@
+- name: Create python venv
+  tags:
+    - python-venv
+    - install
+
+  ansible.builtin.pip:
+    virtualenv: "{{ansible_env.HOME}}/tools/venv"
+    virtualenv_command: python3.12 -m venv
+    requirements: "{{role_path}}/files/requirements.txt"

@@ -1,0 +1,17 @@
+- name: Fetch mise-en-place
+  ansible.builtin.uri:
+    url: https://mise.jdx.dev/install.sh
+    return_content: true
+  register: mise_content
+
+- name: Install mise-en-place
+  ansible.builtin.shell:
+    cmd: sh
+    stdin: "{{ mise_content.content }}"
+
+
+- name: Install mise toolchains
+  ansible.builtin.shell:
+    cmd: |
+      mise trust {{ansible_env.HOME}}/.config/.mise.toml
+      mise install

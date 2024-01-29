@@ -1,0 +1,57 @@
+- name: Remove Neovim
+  shell: rm -rf ~/neovim
+  tags:
+    - neovim
+- name: Install packages
+  become: true
+  ansible.builtin.apt:
+    name:
+      - ripgrep
+      - fzf
+      - clang
+      - ninja-build
+      - gettext
+      - cmake
+      - unzip
+
+- name: Create ~/packages/
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/packages"
+    state: directory
+    mode: 0755
+
+- name: Create ~/tools/
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/tools"
+    state: directory
+    mode: 0755
+
+
+- name: Clone Neovim
+  ansible.builtin.git:
+    repo: 'https://github.com/neovim/neovim.git'
+    dest: "{{ ansible_env.HOME }}/tools/neovim"
+  tags:
+    - neovim
+- name: Build neovim
+  shell: "cd {{ ansible_env.HOME }}/tools/neovim && make -j 20"
+  tags:
+    - neovim
+- name: Install neovim
+  become: true
+  shell: "cd {{ ansible_env.HOME }}/tools/neovim && make install"
+  tags:
+    - neovim
+- name: Neovim Plugin Development 1
+  become: true
+  apt: name=luarocks
+  tags:
+    - neovim
+- name: Neovim Plugin Development 2 luacheck
+  become: true
+  shell: luarocks install luacheck
+  tags:
+    - neovim
+
+- name: Install pynvim
+  import_tasks: python.yml

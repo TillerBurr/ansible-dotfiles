@@ -1,0 +1,30 @@
+- name: Install ssh
+  tags: ssh
+  vars:
+    source_key: "./.ssh/id_rsa"
+    dest_key: "{{ ansible_env.HOME }}/.ssh/id_rsa"
+  block:
+    - name: Make sure .ssh/ exists
+      ansible.builtin.file:
+        dest: "{{dest_key | dirname }}"
+        mode: 0700
+        state: directory
+    - name: Install ssh key
+      ansible.builtin.copy:
+        src: "{{ source_key }}"
+        dest: "{{ dest_key }}"
+        mode: '0600'
+        backup: false
+    - name: Install public key
+      ansible.builtin.copy:
+        src: "{{ source_key}}.pub"
+        dest: "{{ dest_key }}.pub"
+        mode: '0644'
+        backup: false
+    - name: Set authorized_keys
+      ansible.posix.authorized_key:
+        user: "{{ ansible_user_id }}"
+        state: present
+        key: "{{ ansible_env.HOME }}/.ssh/id_rsa.pub"
+      with_fileglob:
+        - "{{ ansible_env.HOME }}/.ssh/*.pub"

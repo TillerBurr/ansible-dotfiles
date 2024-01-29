@@ -1,0 +1,15 @@
+\.git
+\.gitignore
+
+^/roles
+^/hosts
+^/deps
+
+^/README.md
+^/setup-.*.yml
+^/requirements.yml
+^/ansible.cfg
+^/install
+
+^/\.stowrc
+^/\.gitconfig-local

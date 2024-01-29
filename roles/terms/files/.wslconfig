@@ -1,0 +1,10 @@
+[wsl2]
+memory=10GB
+networkingMode=mirrored
+dnsTunneling=true
+firewall=true
+autoProxy=true
+
+[experimental]
+autoMemoryReclaim=gradual
+sparseVHD=true

@@ -1,0 +1,55 @@
+- name: Set up dev environment
+  hosts: localhost
+  vars:
+    windows_user: tbaur
+  pre_tasks:
+  - name: Update apt
+    become: true
+    ansible.builtin.apt:
+      update_cache: true
+
+  tasks:
+    - name: Core Utils
+      tags: core
+      import_role:
+        name: core
+
+    - name: Stow
+      tags: stow
+      import_role:
+        name: stow
+
+    - name: Fish Shell
+      tags: fish
+      import_role:
+        name: fish
+
+    - name: Mise-en-place
+      tags: mise
+      import_role:
+        name: mise
+
+    - name: rustup
+      tags: rust
+      import_role:
+        name: rust
+
+    - name: Neovim
+      tags: neovim
+      import_role:
+        name: neovim
+
+    - name: Terminal
+      tags: terms
+      import_role:
+        name: terms
+
+    - name: SSH
+      tags: ssh
+      import_role:
+        name: ssh
+
+    - name: Copy local git config
+      copy:
+        src: "./.gitconfig-local"
+        dest: "{{ ansible_env.HOME }}/.gitconfig.local"
