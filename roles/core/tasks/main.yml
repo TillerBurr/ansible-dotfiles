@@ -7,8 +7,9 @@
       - python3-venv
       - python3-pip
       - gnupg2
+      - bat
       - python3-apt
-      - fuse
+      # - fuse
       - wget
       - curl
       - llvm
@@ -30,8 +31,19 @@
       - tk-dev
       - libxml2-dev
       - libxmlsec1-dev
-
     state: present
+
+- name: Add deadsnakes ppa
+  become: true
+  ansible.builtin.apt_repository:
+    repo: ppa:deadsnakes/ppa
+
+- name: Install Core apt packages
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+    name:
+      - python3.12
 
 - name: Create directory ~/.local/bin/
   file:

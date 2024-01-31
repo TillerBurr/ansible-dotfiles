@@ -25,6 +25,6 @@
       ansible.posix.authorized_key:
         user: "{{ ansible_user_id }}"
         state: present
-        key: "{{ ansible_env.HOME }}/.ssh/id_rsa.pub"
+        key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
       with_fileglob:
-        - "{{ ansible_env.HOME }}/.ssh/*.pub"
+        - "{{ lookup('env','HOME')}}/.ssh/*.pub"

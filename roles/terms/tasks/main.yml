@@ -6,6 +6,8 @@
       ansible.builtin.get_url:
         url: https://apt.fury.io/wez/gpg.key
         dest: /usr/share/keyrings/wezterm-fury.asc
+        mode: 0644
+        force: true
     - name: Add Wezterm repo
       ansible.builtin.apt_repository:
         repo: 'deb [signed-by=/usr/share/keyrings/wezterm-fury.asc] https://apt.fury.io/wez/ * *'

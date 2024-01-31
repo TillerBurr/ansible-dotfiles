@@ -18,29 +18,33 @@
   ansible.builtin.command: usermod --shell /usr/bin/fish {{ ansible_env.USER }}
   changed_when: false
   tags: fish
-
+# curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
 - name: Install omf when absent of fish user's home
   tags: fish
   block:
-  - name: Get lastest omf from git
+  - name: Get lastest Fisher from git
     ansible.builtin.git:
-      repo: 'https://github.com/oh-my-fish/oh-my-fish'
-      dest: '/tmp/omf'
+      repo: 'https://github.com/jorgebucaran/fisher'
+      dest: '/tmp/fisher'
       clone: yes
 
-  - name: Installing omf for fish user
-    ansible.builtin.command: /tmp/omf/bin/install -y --offline --noninteractive
-
-  - name: Cleanup omf install files
-    ansible.builtin.file:
-      path: '/tmp/omf'
-      state: absent
-  - name: Install omf packages
+  - name: Installing fisher for fish user
     ansible.builtin.shell: |
-      omf install colored-man-pages
-      omf install export
-      omf install bass
-      omf install z
-      omf install https://github.com/dgrant/fish-autoenv2
+      source /tmp/fisher/functions/fisher.fish
+      fisher install jorgebucaran/fisher
+    args:
+      executable: /usr/bin/fish
+
+  - name: Cleanup fisher install files
+    ansible.builtin.file:
+      path: '/tmp/fisher'
+      state: absent
+
+  - name: Install fisher packages
+    ansible.builtin.shell: |
+      fisher install PatrickF1/colored_man_pages.fish
+      fisher install edc/bass
+      fisher install tillerburr/fish-autoenv
+      fisher install jethrokuan/z
     args:
       executable: /usr/bin/fish

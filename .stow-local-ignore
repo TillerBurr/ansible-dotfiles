@@ -4,6 +4,7 @@
 ^/roles
 ^/hosts
 ^/deps
+^/.ssh
 
 ^/README.md
 ^/setup-.*.yml
