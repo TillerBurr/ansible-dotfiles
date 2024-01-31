@@ -5,7 +5,7 @@
 	email = baur.tyler@gmail.com
 
 [include]
-	path = ~/.gitconfig-local
+	path = ~/.gitconfig.local
 
 
 [alias]
