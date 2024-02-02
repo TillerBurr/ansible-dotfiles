@@ -5,7 +5,11 @@ return {
 		branch = "v3.x",
 		dependencies = {
 			-- LSP Support
-			"neovim/nvim-lspconfig",
+			{
+				"neovim/nvim-lspconfig",
+				dependencies = { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
+				"rafi/neoconf-venom.nvim",
+			},
 			{
 				"williamboman/mason.nvim",
 				build = function()
@@ -31,6 +35,8 @@ return {
 			"rafamadriz/friendly-snippets",
 		},
 		config = function()
+			require("neoconf").setup()
+			require("venom").setup()
 			local lspconfig = require("lspconfig")
 			local lsp_zero = require("lsp-zero")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -286,9 +292,6 @@ return {
 								analysis = {
 									typeCheckingMode = "basic",
 									diagnosticMode = "openFilesOnly",
-									--                     diagnosticSeverityOverrides = {
-									--   reportUnusedVariable = "debug", -- or anything
-									-- },
 								},
 							},
 						},
@@ -388,5 +391,9 @@ return {
 		config = function()
 			require("codeium").setup({})
 		end,
+	},
+	{
+		"rafi/neoconf-venom.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "folke/neoconf.nvim" },
 	},
 }

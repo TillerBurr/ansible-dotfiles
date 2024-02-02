@@ -20,3 +20,4 @@ poetry='https://github.com/asdf-community/asdf-poetry'
 
 [settings]
 experimental = true
+python_compile = false
