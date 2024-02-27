@@ -26,10 +26,10 @@ return {
 				:find()
 		end
 
-		vim.keymap.set("n", "<C-e>", function()
+		vim.keymap.set("n", "<C-i>", function()
 			toggle_telescope(harpoon:list())
 		end, { desc = "Open harpoon window" })
-		vim.keymap.set("n", "<C-M-j>", function()
+		vim.keymap.set("n", "<C-M-t>", function()
 			harpoon:list():prev()
 		end)
 		vim.keymap.set("n", "<C-M-h>", function()

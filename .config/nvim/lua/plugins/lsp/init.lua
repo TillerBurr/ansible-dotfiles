@@ -236,7 +236,7 @@ return {
 					vim.lsp.buf.format()
 				end, { desc = "format code" })
 				-- vim.keymap.set("n", "<leader>f", function() require('conform').format()  end, { desc = "format code" })
-				vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, opts("set loc list"))
+				vim.keymap.set("n", "<leader>ll", vim.diagnostic.setloclist, opts("set loc list"))
 
 				-- Enable completion triggered by <c-x><c-o>
 				lsp_zero.default_keymaps({ buffer = bufnr })
@@ -249,9 +249,9 @@ return {
 				local bufopts = { noremap = true, silent = true, buffer = bufnr }
 				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
 				vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-				vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, bufopts)
-				vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
-				vim.keymap.set("n", "<leader>wl", function()
+				vim.keymap.set("n", "<leader>ra", vim.lsp.buf.add_workspace_folder, bufopts)
+				vim.keymap.set("n", "<leader>rr", vim.lsp.buf.remove_workspace_folder, bufopts)
+				vim.keymap.set("n", "<leader>rl", function()
 					print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 				end, bufopts)
 				vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, bufopts)

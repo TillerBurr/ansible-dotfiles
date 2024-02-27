@@ -1,0 +1,3 @@
+- name: Install rye
+  tags: rye
+  ansible.builtins.shell: "curl -sSf https://rye-up.com/get | bash"

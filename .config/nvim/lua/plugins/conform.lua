@@ -3,9 +3,10 @@ return {
 	opts = {
 		formatters_by_ft = {
 			["lua"] = { "stylua" },
-			["python"] = { "ruff_fix", "ruff_format" },
+			["python"] = { "ruff_fix", "ruff_format", "black" },
 			["go"] = { "gofmt" },
 			["rust"] = { "rustfmt" },
+			["typescript"] = { "prettier" },
 		},
 		-- formatters = { ruff_format = { command = vim.fn.expand("$HOME") .. "/tools/.venv/bin/ruff" } },
 		format_on_save = {

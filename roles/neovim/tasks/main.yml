@@ -26,13 +26,30 @@
     state: directory
     mode: 0755
 
+- name: Get Latest Neovim Tag
+  shell: curl --silent 'https://api.github.com/repos/neovim/neovim/releases/latest' |  grep '"tag_name":' | cut -d'"' -f4
+  register: latest_tag_nvim
+  changed_when: false
+  args:
+    warn: no
+  tags:
+    - neovim
+
+- name: Set latest tag
+  set_fact:
+    latest_tag: "{{ latest_tag_nvim.stdout }}"
+  when: latest_tag_nvim.stdout is defined
+  tags:
+    - neovim
 
 - name: Clone Neovim
   ansible.builtin.git:
     repo: 'https://github.com/neovim/neovim.git'
     dest: "{{ ansible_env.HOME }}/tools/neovim"
+    version: "{{ latest_tag }}"
   tags:
     - neovim
+
 - name: Build neovim
   shell: "cd {{ ansible_env.HOME }}/tools/neovim && make -j 20"
   tags:

@@ -6,6 +6,9 @@ keymap.set("n", "<leader>b", "<cmd> :ls<CR>:b <Space>", { desc = "Go to Buffer" 
 keymap.set("n", "<F9>", "<cmd>:bp<cr>", { desc = "Prev Buffer" })
 keymap.set("n", "<F10>", "<cmd>:bn<cr>", { desc = "Next Buffer" })
 keymap.set("n", "<leader>lg", "<cmd>:LazyGit<cr>", { desc = "Open LazyGit" })
+keymap.set("n", "<leader>q", "<cmd> :q <CR>", { desc = "Quit" })
+keymap.set("n", "<leader>w", "<cmd> :w <CR>", { desc = "Write" })
+keymap.set("n", "<leader>Q", "<cmd> :q! <CR>", { desc = "Quit, with meaning" })
 
 keymap.set("n", "<leader>xx", function()
 	require("trouble").open()
