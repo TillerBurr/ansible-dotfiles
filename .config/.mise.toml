@@ -1,6 +1,6 @@
 [tools]
 nodejs=["18", "19"]
-python = {version="3.12.1", virtualenv=".venv"}
+python = "3.12.1"
 pnpm='7.30.0'
 poetry = "1.4.0"
 pdm = "latest"
