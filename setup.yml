@@ -39,6 +39,11 @@
       import_role:
         name: rust
 
+    - name: rye
+      tags: rye
+      import_role:
+        name: rye
+
     - name: Neovim
       tags: neovim
       import_role:
