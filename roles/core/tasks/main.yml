@@ -16,7 +16,8 @@
       - make
       - gcc
       - file
-      - pinentry-gtk2
+      - pinentry-tty
+      # - pinentry-gtk2
       - fd-find
       - build-essential
       - libssl-dev

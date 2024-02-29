@@ -14,7 +14,15 @@ set -gx PIPX_DEFAULT_PYTHON $HOME/.local/share/mise/installs/python/3.11.4/bin/p
 set -gx DPRINT_INSTALL $HOME/.dprint
 
 set -Ux fish_tmux_unicode true
+set -x GPG_TTY $(tty)
+# echo $(tty)
+# set -e DISPLAY
+# gpg-connect-agent updatestartuptty /bye >/dev/null
+# if not test -f ~/.gnupg/S.gpg-agent
+#     eval (gpg-agent --daemon --options ~/.gnupg/gpg-agent.conf)
+# end
 
+# set -x GPG_AGENT_INFO $HOME/.gnupg/S.gpg-agent:0:1
 
 if test -d $HOME/.pyenv
     eval (pyenv init --path)
