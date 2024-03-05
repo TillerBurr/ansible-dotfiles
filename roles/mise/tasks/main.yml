@@ -13,5 +13,5 @@
 - name: Install mise toolchains
   ansible.builtin.shell:
     cmd: |
-      mise trust {{ansible_env.HOME}}/.config/.mise.toml
-      mise install
+      {{ansible_env.HOME}}/.local/bin/mise trust {{ansible_env.HOME}}/.config/.mise.toml
+      {{ansible_env.HOME}}/.local/bin/mise install

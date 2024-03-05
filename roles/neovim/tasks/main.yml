@@ -47,7 +47,12 @@
     version: "{{ latest_tag }}"
   tags:
     - neovim
-
+- name: Remove .deps
+  ansible.builtin.file:
+    path: "{{ansible_env.HOME}}/tools/neovim/.deps"
+    state: absent
+  tags:
+    - neovim
 - name: Build neovim
   shell: "cd {{ ansible_env.HOME }}/tools/neovim && make -j 20"
   tags:
@@ -57,6 +62,7 @@
   shell: "cd {{ ansible_env.HOME }}/tools/neovim && make install"
   tags:
     - neovim
+
 - name: Neovim Plugin Development 1
   become: true
   apt: name=luarocks
