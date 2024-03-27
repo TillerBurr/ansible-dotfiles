@@ -203,7 +203,7 @@ return {
 				vim.keymap.set("n", "gd", function()
 					vim.lsp.buf.definition()
 				end, opts("definition"))
-				vim.keymap.set("n", "K", function()
+				vim.keymap.set("n", "gk", function()
 					vim.lsp.buf.hover()
 				end, opts("hover"))
 				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts("declaration"))
@@ -237,6 +237,7 @@ return {
 				end, { desc = "format code" })
 				-- vim.keymap.set("n", "<leader>f", function() require('conform').format()  end, { desc = "format code" })
 				vim.keymap.set("n", "<leader>ll", vim.diagnostic.setloclist, opts("set loc list"))
+				vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
 				-- Enable completion triggered by <c-x><c-o>
 				lsp_zero.default_keymaps({ buffer = bufnr })
