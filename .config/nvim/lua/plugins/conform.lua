@@ -46,21 +46,4 @@ return {
 			desc = "Re-enable autoformat-on-save",
 		})
 	end,
-	-- config = function()
-	-- 	local mason_reg = require("mason-registry")
-	--
-	-- 	local formatters = {}
-	-- 	local formatters_by_ft = {}
-	--
-	--        local ruff_cmd=mason_reg.get_package("ruff").path
-	--        vim.print(ruff_cmd)
-	-- 	return {
-	-- 		format_on_save = {
-	-- 			lsp_fallback = true,
-	-- 			timeout_ms = 500,
-	-- 		},
-	-- 		formatters = formatters,
-	-- 		formatters_by_ft = formatters_by_ft,
-	-- 	}
-	-- end,
 }

@@ -41,7 +41,7 @@
   "neoconf.nvim": { "branch": "main", "commit": "ef304c29977b85c99382fcba821b3f710e144a74" },
   "neodev.nvim": { "branch": "main", "commit": "6a533ed9d3435dcaa456380d833ea04da37ea2ed" },
   "neogen": { "branch": "main", "commit": "0daffcec249bf42275e322361fe55b89a05ff278" },
-  "neogit": { "branch": "master", "commit": "73e23120492e879cd9dfde85ad831970bf63f886" },
+  "neogit": { "branch": "master", "commit": "09dde52915db71280fe33f72c92e3a3576754e1c" },
   "neotest": { "branch": "master", "commit": "e07fe8241112274aae9947b98d255763738a1d52" },
   "neotest-python": { "branch": "master", "commit": "2e83d2bc00acbcc1fd529dbf0a0e677cabfe6b50" },
   "noice.nvim": { "branch": "main", "commit": "0cbe3f88d038320bdbda3c4c5c95f43a13c3aa12" },
@@ -70,7 +70,6 @@
   "telescope-symbols.nvim": { "branch": "master", "commit": "a6d0127a53d39b9fc2af75bd169d288166118aec" },
   "telescope.nvim": { "branch": "master", "commit": "b22e6f6896cd64b109bd0807a24098d225d5fb49" },
   "trim.nvim": { "branch": "master", "commit": "4fe47a46c02a58894ded8328ca81f6c214a892f5" },
-  "trouble.nvim": { "branch": "main", "commit": "2ac8b847a6d918b30b90095d89a53500d9e2cd5e" },
   "undotree": { "branch": "master", "commit": "aa93a7e5890dbbebbc064cd22260721a6db1a196" },
   "which-key.nvim": { "branch": "main", "commit": "4433e5ec9a507e5097571ed55c02ea9658fb268a" },
   "yanky.nvim": { "branch": "main", "commit": "7c5cbf0122ff2dfbb6a92f14885894f65949cc8b" }
