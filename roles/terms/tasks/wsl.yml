@@ -7,6 +7,7 @@
   ansible.builtin.copy:
     src: files/.wslconfig
     dest: "/mnt/c/Users/{{windows_user}}/.wslconfig"
+  ignore_errors: True
 
 - name: Install win32yank 64-bit from GitHub
   unarchive:

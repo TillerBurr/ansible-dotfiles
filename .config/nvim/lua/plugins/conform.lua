@@ -7,6 +7,9 @@ return {
 			["go"] = { "gofmt" },
 			["rust"] = { "rustfmt" },
 			["typescript"] = { "prettier" },
+			["javascript"] = { "prettier" },
+			["typescriptreact"] = { "prettier" },
+			["javascriptreact"] = { "prettier" },
 		},
 		-- formatters = { ruff_format = { command = vim.fn.expand("$HOME") .. "/tools/.venv/bin/ruff" } },
 		format_on_save = {

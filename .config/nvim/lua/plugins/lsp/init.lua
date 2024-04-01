@@ -239,6 +239,7 @@ return {
 				vim.keymap.set("n", "<leader>ll", vim.diagnostic.setloclist, opts("set loc list"))
 				vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
+				vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 				-- Enable completion triggered by <c-x><c-o>
 				lsp_zero.default_keymaps({ buffer = bufnr })
 			end)
@@ -297,6 +298,7 @@ return {
 							},
 						},
 					}),
+					tsserver = lspconfig.tsserver.setup({}),
 					yamlls = function()
 						lspconfig.yamlls.setup({
 							settings = {

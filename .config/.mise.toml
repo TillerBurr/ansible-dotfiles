@@ -1,12 +1,13 @@
 [tools]
 nodejs=["18", "19"]
 python = "3.12.1"
-pnpm='7.30.0'
+pnpm = "latest"
 poetry = "1.4.0"
 pdm = "latest"
 java = "20.0.2"
 pipx="latest"
 go = "latest"
+just = "latest"
 
 [plugins]
 # specify a custom repo url
