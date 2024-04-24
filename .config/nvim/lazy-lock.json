@@ -33,6 +33,7 @@
   "lspkind.nvim": { "branch": "master", "commit": "1735dd5a5054c1fb7feaf8e8658dbab925f4f0cf" },
   "lualine.nvim": { "branch": "master", "commit": "b5e8bb642138f787a2c1c5aedc2a78cb2cebbd67" },
   "marks.nvim": { "branch": "master", "commit": "74e8d01b2a2131b6e46354cffc553aa7f81bcf5b" },
+  "mason-conform": { "branch": "main", "commit": "045065954f2e9d0acfb0bf38e905e3cf6f1e5b67" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "9dfcf2036c223920826140f0151d929a43f9eceb" },
   "mason.nvim": { "branch": "main", "commit": "751b1fcbf3d3b783fcf8d48865264a9bcd8f9b10" },
   "mini.comment": { "branch": "main", "commit": "a4b7e46deb9ad2feb8902cc5dbf087eced112ee5" },
@@ -70,6 +71,7 @@
   "telescope-symbols.nvim": { "branch": "master", "commit": "a6d0127a53d39b9fc2af75bd169d288166118aec" },
   "telescope.nvim": { "branch": "master", "commit": "b22e6f6896cd64b109bd0807a24098d225d5fb49" },
   "trim.nvim": { "branch": "master", "commit": "4fe47a46c02a58894ded8328ca81f6c214a892f5" },
+  "trouble.nvim": { "branch": "main", "commit": "f1168feada93c0154ede4d1fe9183bf69bac54ea" },
   "undotree": { "branch": "master", "commit": "aa93a7e5890dbbebbc064cd22260721a6db1a196" },
   "which-key.nvim": { "branch": "main", "commit": "4433e5ec9a507e5097571ed55c02ea9658fb268a" },
   "yanky.nvim": { "branch": "main", "commit": "7c5cbf0122ff2dfbb6a92f14885894f65949cc8b" }
