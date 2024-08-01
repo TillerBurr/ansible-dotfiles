@@ -1,7 +1,7 @@
 - name: Set up dev environment
   hosts: localhost
   vars:
-    windows_user: tbaur
+    windows_user: Tyler Baur
   vars_prompt:
     - name: gpg_passphrase
       prompt: "GPG passphrase"
@@ -63,6 +63,11 @@
       tags: gpg
       import_role:
         name: gpg
+
+    - name: Tmux
+      tags: tmux
+      import_role:
+        name: tmux
 
     - name: Copy local git config
       copy:

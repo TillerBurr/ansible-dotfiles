@@ -2,6 +2,15 @@
   ansible.builtin.copy:
     src: files/.wezterm-wsl.lua
     dest: "/mnt/c/Users/{{windows_user}}/.wezterm.lua"
+- name: create directory
+  file:
+    path: "/mnt/c/Users/{{windows_user}}/Powershell"
+    state: directory
+    
+- name: move pwsh config
+  ansible.builtin.copy:
+    src: files/Microsoft.Powershell_profile.ps1
+    dest: "/mnt/c/Users/{{windows_user}}/Powershell/Microsoft.Powershell_profile.ps1"
 
 - name: move .wslconfig to windows
   ansible.builtin.copy:

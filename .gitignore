@@ -1,9 +1,2 @@
 .config/fish/fish_variables
-.config/fish/functions
 .config/fish/fish_plugins
-!.config.fish/functions/up.fish
-!.config.fish/functions/av.fish
-!.config.fish/functions/mkcd.fish
-!.config.fish/functions/ls.fish
-!.config.fish/functions/cat.fish
-!.config.fish/functions/pipx.fish

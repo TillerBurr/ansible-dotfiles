@@ -48,3 +48,9 @@ $HOME/.local/bin/mise activate -s fish | source
 # source $HOME/.local/git-subrepo/.fish.rc
 fish_add_path -p ~/.rye/shims
 fish_add_path -p $DPRINT_INSTALL/bin
+
+# bit
+if not string match -q -- "/home/tbaur/bin" $PATH
+  set -gx PATH $PATH "/home/tbaur/bin"
+end
+# bit end

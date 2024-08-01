@@ -3,6 +3,7 @@
 # Please adapt and uncomment the following lines:
 	name = Tyler Baur
 	email = baur.tyler@gmail.com
+	# signingkey = 5DE225DD223CFB0B
 
 [include]
 	path = ~/.gitconfig.local
@@ -36,3 +37,59 @@
 	program = /usr/bin/gpg2
 [init]
 	defaultBranch = main
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = Tyler Baur
+	email = baur.tyler@gmail.com
+	signingkey = 5DE225DD223CFB0B
+
+[include]
+	path = ~/.gitconfig.local
+
+
+[alias]
+	i = init
+	s = status
+	p = push
+    dft = difftool
+	a = add
+	c = commit -am
+	b = branch
+
+	ra = remote add
+	po = push origin
+	co = checkout
+
+	pom = push origin master
+
+[url "https://github.com/"]
+	insteadOf = gh:
+
+[core]
+	autocrlf = input
+	filemode = false
+	editor = nano
+
+[commit]
+	gpgsign = true
+[gpg]
+	program = /usr/bin/gpg2
+[init]
+	defaultBranch = main
+
+[diff]
+        tool = difftastic
+
+[difftool]
+        prompt = false
+
+[difftool "difftastic"]
+        cmd = difft "$LOCAL" "$REMOTE"
+
+[pager]
+        difftool = true
+[push]
+	autoSetupRemote = true
+[fetch]
+	prune = true
