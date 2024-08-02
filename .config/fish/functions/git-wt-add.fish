@@ -2,20 +2,19 @@ function edit-git-file
     # Hack to make PyCharm work with worktrees
     # This function is used to edit the .git file in the worktree to point to the correct gitdir
     # Windows does not know the WSL path, so we need to use the relative path
-    set -l git_dir split -s "/" $argv[1]
-    set -l git_file $git_dir[-1]
-    echo "gitdir: ../gaia/.git/worktrees/$git_file" > .git
+    set -l wt_path $argv[1]
+    set -l git_file (basename $wt_path)
+    echo "gitdir: ../gaia/.git/worktrees/$git_file" > "$wt_path/.git"
 end
 
 function replace-run-modules
     # This function is used to replace the <module name="gaia" /> with <module name ="<dirname>"/>
     set -l worktree_dir $argv[1]
     set -l run_file $argv[2]
-    set -l pattern "<module name=\"gaia\" />"
-    set -l replacement "<module name=\"$(basename $worktree_dir)\" />"
-    set -l temp_file $run_file.temp
-    set line_number (awk -v pat="$pattern" '$0 ~ pat {print new; next} {print}' $run_file) > $temp_file
-    mv $temp_file $run_file
+    set -l pattern "<module name=\"gaia\" \/>"
+    set -l replacement "<module name=\"$(basename $worktree_dir)\" \/>"
+    sed -i "s/$pattern/$replacement/g" $run_file
+
 end
 
 function git-wt-add
@@ -38,9 +37,10 @@ function git-wt-add
         echo -e $green "Worktree created successfully"
 
         set -l copy_files_in_dir ".run" # These are directories that already exist
-        set -l link_entire_object\ # These are files that need to be symlinked
-            "ui/client_portal/node_modules"\
-            ".mise.toml"\
+        # These are files that need to be symlinked
+        set -l link_entire_object \
+            "ui/client_portal/node_modules" \
+            ".mise.toml" \
             "ui/client_portal/react_views/src/PreviewComponent.tsx"
 
         for item in $link_entire_object
