@@ -45,6 +45,7 @@
     repo: 'https://github.com/neovim/neovim.git'
     dest: "{{ ansible_env.HOME }}/tools/neovim"
     version: "{{ latest_tag }}"
+    force: true
   tags:
     - neovim
 - name: Remove .deps

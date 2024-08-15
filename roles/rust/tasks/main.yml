@@ -1,15 +1,21 @@
-- name:  rustup
-  tags: rust
-  ansible.builtin.uri:
-    url: https://sh.rustup.rs
-    return_content: yes
-  register: rustup_installer
+- name: check if cargo installed
+  ansible.builtin.shell: command -v cargo
+  register: cargo_exists
+  ignore_errors: yes
 
-- name: Run rustup installer
+- name: Download Installer
+  when: cargo_exists is failed
+  get_url:
+    url: https://sh.rustup.rs
+    dest: /tmp/sh.rustup.rs
+    mode: '0755'
+    force: 'yes'
   tags: rust
-  ansible.builtin.shell:
-    cmd: sh -s -- -y
-    stdin: "{{ rustup_installer.content }}"
+
+- name: install rust/cargo
+  when: cargo_exists is failed
+  shell: /tmp/sh.rustup.rs -y
+  tags: rust
 
 - name: Install cargo packages
   tags: rust
@@ -17,5 +23,6 @@
     - eza
     - stylua
     - tree-sitter-cli
+    - starship
   ansible.builtin.shell:
-    cmd: cargo install "{{ item }}"
+    cmd: "{{ansible_env.HOME}}/.cargo/bin/cargo install {{ item }}"

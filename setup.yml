@@ -1,7 +1,7 @@
 - name: Set up dev environment
   hosts: localhost
   vars:
-    windows_user: Tyler Baur
+    windows_user: tbaur
   vars_prompt:
     - name: gpg_passphrase
       prompt: "GPG passphrase"

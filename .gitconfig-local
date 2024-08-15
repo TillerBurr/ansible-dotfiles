@@ -1,5 +1,6 @@
 # This is Git's per-user configuration file.
+[commit]
+gpgsign = true
 [user]
 # Please adapt and uncomment the following lines:
-    commit.gpgsign = true
-	signingkey = 612A0872DB255012
+signingkey = 612A0872DB255012
