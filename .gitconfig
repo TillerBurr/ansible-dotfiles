@@ -91,5 +91,8 @@
         difftool = true
 [push]
 	autoSetupRemote = true
+	default = current
 [fetch]
 	prune = true
+[help]
+	autocorrect = prompt

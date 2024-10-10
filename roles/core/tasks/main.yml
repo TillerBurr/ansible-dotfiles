@@ -9,7 +9,7 @@
       - gnupg2
       - bat
       - python3-apt
-      # - fuse
+      - thefuck
       - wget
       - curl
       - llvm
@@ -17,7 +17,6 @@
       - gcc
       - file
       - pinentry-tty
-      # - pinentry-gtk2
       - fd-find
       - build-essential
       - libssl-dev

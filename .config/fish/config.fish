@@ -54,3 +54,5 @@ if not string match -q -- "/home/tbaur/bin" $PATH
   set -gx PATH $PATH "/home/tbaur/bin"
 end
 # bit end
+
+thefuck --alias | source
