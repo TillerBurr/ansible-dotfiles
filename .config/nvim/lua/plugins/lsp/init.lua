@@ -309,7 +309,7 @@ return {
 				-- Replace the language servers listed here
 				-- with the ones you want to install
 				ensure_installed = {
-					"tsserver",
+					"ts_ls",
 					"pyright",
 					"yamlls",
 					"marksman",
@@ -341,7 +341,7 @@ return {
 							},
 						},
 					}),
-					tsserver = lspconfig.tsserver.setup({}),
+					ts_ls= lspconfig.ts_ls.setup({}),
 					yamlls = function()
 						lspconfig.yamlls.setup({
 							settings = {

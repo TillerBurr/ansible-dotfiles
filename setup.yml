@@ -73,3 +73,8 @@
       copy:
         src: "./.gitconfig-local"
         dest: "{{ ansible_env.HOME }}/.gitconfig.local"
+
+    - name: Copy xinitrc for WSLg Workaround
+      copy:
+        src: "./.xinitrc"
+        dest: "{{ ansible_env.HOME }}/.xinitrc"

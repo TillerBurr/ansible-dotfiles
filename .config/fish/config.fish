@@ -1,7 +1,11 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
-
+# set -x DISPLAY $(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
+# set -e WAYLAND_DISPLAY
+# setxkbmap -layout us -variant dvorak
+# set -x WAYLAND_DISPLAY 'wayland-1'
+# set -x GDK_BACKEND x11
 fish_add_path -p ~/.local/bin
 fish_add_path -p ~/.cargo/bin
 fish_add_path -p ~/chromedrivers
@@ -14,9 +18,9 @@ set -gx PIPX_DEFAULT_PYTHON $HOME/.local/share/mise/installs/python/3.11.4/bin/p
 set -gx DPRINT_INSTALL $HOME/.dprint
 
 set -Ux fish_tmux_unicode true
-set -x GPG_TTY $(tty)
+set -x GPG_TTY (tty)
 # echo $(tty)
-# set -e DISPLAY
+set -x DISPLAY :0
 # gpg-connect-agent updatestartuptty /bye >/dev/null
 # if not test -f ~/.gnupg/S.gpg-agent
 #     eval (gpg-agent --daemon --options ~/.gnupg/gpg-agent.conf)
@@ -43,7 +47,10 @@ set -U autovenv_announce yes
 starship init fish | source
 #scheme set default
 set -x MISE_CONFIG_FILE $HOME/.config/.mise.toml
-$HOME/.local/bin/mise activate -s fish | source
+set mise_bin $HOME/.local/bin/mise
+if type -q $mise_bin
+    $mise_bin activate -s fish | source
+end
 
 # source $HOME/.local/git-subrepo/.fish.rc
 fish_add_path -p ~/.rye/shims
@@ -55,4 +62,14 @@ if not string match -q -- "/home/tbaur/bin" $PATH
 end
 # bit end
 
-thefuck --alias | source
+if type -q thefuck
+    thefuck --alias | source
+end
+if type -q jj
+    jj util completion fish | source
+end
+
+
+# Temporary fix for WSLg keyboard layout (only change the first line)
+# Temporary fix for WSLg keyboard layout (only change the first line)
+# bash $HOME/.config/fish/keyboard.sh
