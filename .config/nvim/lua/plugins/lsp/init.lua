@@ -3,6 +3,7 @@ return {
 	{
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v3.x",
+        cond= not vim.g.vscode,
 		dependencies = {
 			-- LSP Support
 			{
@@ -30,17 +31,27 @@ return {
 								["typescriptreact"] = { "prettier" },
 								["javascriptreact"] = { "prettier" },
 								["markdown"] = { "mdformat" },
+                                ["sql"] = { "sqlfluff"}
 							},
 						},
 					},
 					{
 						"zbirenbaum/copilot-cmp",
 						config = function()
-							require("copilot_cmp").setup()
+							require("copilot_cmp").setup({})
 						end,
+						dependencies = {
+							"zbirenbaum/copilot.lua",
+							cmd = "Copilot",
+							event = "InsertEnter",
+							config = function()
+								require("copilot").setup({
+									suggestion = { enabled = false },
+									panel = { enabled = false },
+								})
+							end,
+						},
 					},
-
-					-- "LittleEndianRoot/mason-conform",
 				},
 			},
 
@@ -150,47 +161,45 @@ return {
 							end
 						end,
 					}),
-					["<Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_next_item()
+					["<Tab>"] = vim.schedule_wrap(function(fallback)
+						if cmp.visible() and has_words_before() then
+							cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
 						elseif luasnip.expand_or_jumpable() then
 							luasnip.expand_or_jump()
 						else
 							fallback()
 						end
-					end, { "i", "s" }),
-
-					["<S-Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_prev_item()
+					end),
+					["<S-Tab>"] = vim.schedule_wrap(function(fallback)
+						if cmp.visible() and has_words_before() then
+							cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
 						elseif luasnip.jumpable(-1) then
 							luasnip.jump(-1)
 						else
 							fallback()
 						end
-					end, { "i", "s" }),
+					end),
 				},
 				sources = {
 					{ name = "copilot", group_index = 2 },
-					{ name = "codeium" },
-					{ name = "nvim_lsp" },
-					{ name = "nvim_lua" },
-					{ name = "luasnip" },
-					{ name = "path" }, -- for path completion
-					{ name = "buffer", keyword_length = 2 }, -- for buffer word completion
+					{ name = "nvim_lsp", group_index = 2 },
+					{ name = "nvim_lua", group_index = 2 },
+					{ name = "luasnip", group_index = 2 },
+					{ name = "path", group_index = 2 }, -- for path completion
+					{ name = "buffer", keyword_length = 2, group_index = 2 }, -- for buffer word completion
 				},
 				completion = {
 					keyword_length = 1,
 					completeopt = "menu,noselect",
 				},
 				experimental = {
-					ghost_text = { hlgroup = "Comment" },
+					ghost_text = true,
 				},
 				formatting = {
 					format = lspkind.cmp_format({
 						mode = "symbol_text",
 						ellipsis_char = "...",
-						symbol_map = { Codeium = "", Copilot = "" },
+						symbol_map = { Copilot = "" },
 						menu = {
 							nvim_lsp = "[LSP]",
 							nvim_lua = "[Lua]",
@@ -202,6 +211,7 @@ return {
 				},
 				sorting = {
 					comparators = {
+                        require("copilot_cmp.comparators").prioritize,
 						cmp.config.compare.offset,
 						cmp.config.compare.exact,
 						cmp.config.compare.score,
@@ -264,9 +274,9 @@ return {
 				vim.keymap.set("n", "<leader>ca", function()
 					vim.lsp.buf.code_action()
 				end, opts("code action"))
-				-- vim.keymap.set("n", "<leader>gr", function()
-				-- 	vim.lsp.buf.references()
-				-- end, opts("references"))
+				vim.keymap.set("n", "gr", function()
+					vim.lsp.buf.references()
+				end, opts("references"))
 				vim.keymap.set("n", "<leader>rn", function()
 					vim.lsp.buf.rename()
 				end, opts("rename"))
@@ -313,7 +323,6 @@ return {
 					"pyright",
 					"yamlls",
 					"marksman",
-					"ruff_lsp",
 					"lua_ls",
 					"rust_analyzer",
 					"gopls",
@@ -341,7 +350,7 @@ return {
 							},
 						},
 					}),
-					ts_ls= lspconfig.ts_ls.setup({}),
+					ts_ls = lspconfig.ts_ls.setup({}),
 					yamlls = function()
 						lspconfig.yamlls.setup({
 							settings = {
@@ -377,6 +386,7 @@ return {
 	{
 		"mrcjkb/rustaceanvim",
 		version = "^3", -- Recommended
+        cond= not vim.g.vscode,
 		ft = { "rust" },
 		opts = {
 			server = {
@@ -429,6 +439,7 @@ return {
 		end,
 	},
 	{
+        cond= not vim.g.vscode,
 		"Exafunction/codeium.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -441,5 +452,6 @@ return {
 	{
 		"rafi/neoconf-venom.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "folke/neoconf.nvim" },
+        cond= not vim.g.vscode,
 	},
 }

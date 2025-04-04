@@ -5,6 +5,7 @@
 ^/hosts
 ^/deps
 ^/.ssh
+^/custom_zsh
 
 ^/README.md
 ^/setup-.*.yml

@@ -1,10 +1,13 @@
 local keymap = vim.keymap
 
 keymap.set("t", "<C-d>", "<C-\\><C-n>")
+keymap.set("n", "U", "<C-r>")
 keymap.set("n", "<leader>bd", "<cmd>:bd<CR>", { desc = "Delete current buffer" })
 keymap.set("n", "<leader>b", "<cmd> :ls<CR>:b <Space>", { desc = "Go to Buffer" })
 keymap.set("n", "<F9>", "<cmd>:bp<cr>", { desc = "Prev Buffer" })
+keymap.set("n", "<leader>bp", "<cmd>:bp<cr>", { desc = "Prev Buffer" })
 keymap.set("n", "<F10>", "<cmd>:bn<cr>", { desc = "Next Buffer" })
+keymap.set("n", "<leader>bn", "<cmd>:bn<cr>", { desc = "Next Buffer" })
 keymap.set("n", "<leader>lg", "<cmd>:LazyGit<cr>", { desc = "Open LazyGit" })
 keymap.set("n", "<leader>q", "<cmd> :q <CR>", { desc = "Quit" })
 keymap.set("n", "<leader>w", "<cmd> :w <CR>", { desc = "Write" })

@@ -19,6 +19,11 @@
       import_role:
         name: core
 
+    - name: ZSH
+      tags: zsh
+      import_role:
+        name: zsh
+
     - name: Stow
       tags: stow
       import_role:

@@ -2,6 +2,7 @@ return {
 	"theprimeagen/harpoon",
 	branch = "harpoon2",
 	dependencies = { "nvim-lua/plenary.nvim" },
+    enabled = false,
 	config = function()
 		local harpoon = require("harpoon")
 		harpoon:setup({})
@@ -36,7 +37,7 @@ return {
 			harpoon:list():next()
 		end)
 		vim.keymap.set("n", "<leader>a", function()
-			harpoon:list():append()
+			harpoon:list():add()
 		end)
 	end,
 }

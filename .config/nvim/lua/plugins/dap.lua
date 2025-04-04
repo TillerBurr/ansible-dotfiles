@@ -8,6 +8,7 @@ return {
 		{ "nvim-telescope/telescope-dap.nvim" },
 		{ "mrcjkb/rustaceanvim" },
 	},
+    cond = not vim.g.vscode,
 	config = function()
 		local opts = { noremap = true, silent = true }
 		local keymap = vim.keymap.set

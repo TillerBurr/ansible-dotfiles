@@ -13,6 +13,7 @@
       - wget
       - curl
       - llvm
+      - fzf
       - make
       - gcc
       - file
@@ -50,3 +51,16 @@
     path: "{{ ansible_env.HOME }}/.local/bin"
     state: directory
     mode: 0755
+
+- name: Create link bat to batcat in Debian
+  become: true
+  ansible.builtin.file:
+    src: '/usr/bin/batcat'
+    dest: '/usr/bin/bat'
+    state: link
+- name: Create link fd to fdfind in Debian
+  become: true
+  ansible.builtin.file:
+    src: '/usr/bin/fdfind'
+    dest: '/usr/bin/fd'
+    state: link

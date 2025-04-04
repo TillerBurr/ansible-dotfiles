@@ -8,8 +8,10 @@ pipx="latest"
 go = "latest"
 just = "latest"
 node = "20"
+zig = "latest"
+poetry = "1.8.3"
 
-[plugins]
+[alias]
 # specify a custom repo url
 # note this will only be used if the plugin does not already exist
 python = 'https://github.com/jdxcode/rtx-python'

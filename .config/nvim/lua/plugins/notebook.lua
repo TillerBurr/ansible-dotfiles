@@ -9,6 +9,7 @@ return {
 		},
 		ft = { "python" },
 		event = "VeryLazy",
+        enabled = false,
 		config = function()
 			local nn = require("notebook-navigator")
 			nn.setup({ activate_hydra_keys = "<leader>h", repl_provider = "molten" })

@@ -8,3 +8,8 @@
   shell: "stow . --target {{ ansible_env.HOME }} --verbose=2"
   register: result
   changed_when: 'result.stderr is search("LINK: ")'
+
+- name: Run ZSH_CUSTOM Stow
+  shell: "stow -S custom_zsh --target {{ ansible_env.HOME }}/.oh-my-zsh/custom --verbose=2"
+  register: result
+  changed_when: 'result.stderr is search("LINK: ")'

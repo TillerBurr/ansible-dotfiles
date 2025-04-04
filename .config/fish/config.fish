@@ -1,6 +1,7 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
+set -x DISPlAY :0
 # set -x DISPLAY $(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
 # set -e WAYLAND_DISPLAY
 # setxkbmap -layout us -variant dvorak

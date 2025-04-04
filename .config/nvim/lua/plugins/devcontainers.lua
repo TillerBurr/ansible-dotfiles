@@ -4,5 +4,6 @@ return {
   config = function ()
       require("devcontainer").setup({})
 
-  end
+  end,
+cond = not vim.g.vscode,
 }
