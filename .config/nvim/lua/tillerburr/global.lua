@@ -13,12 +13,12 @@ vim.g.loaded_ruby_provider = 0 -- Disable ruby provider
 vim.g.loaded_node_provider = 0 -- Disable node provider
 vim.g.did_install_default_menus = 1 -- do not load menu
 vim.g.disable_autoformat = 1 -- do not autoformat
-if vim.loop.os_uname().version:match("Windows") then
-	vim.api.nvim_err_writeln("Windows Detected.")
-	vim.g.python3_host_prog = "~/tools/.venv/Scripts/python.exe"
-else
-	vim.g.python3_host_prog = "~/tools/.venv/bin/python"
-end
+-- if vim.loop.os_uname().version:match("Windows") then
+-- 	vim.api.nvim_err_writeln("Windows Detected.")
+-- 	vim.g.python3_host_prog = "~/tools/.venv/Scripts/python.exe"
+-- else
+-- 	vim.g.python3_host_prog = "~/tools/.venv/bin/python"
+-- end
 -- Specify server commands for LanguageClient
 
 -- Set the server commands
@@ -60,16 +60,16 @@ vim.g.loaded_matchparen = 1
 vim.g.loaded_sql_completion = 1
 
 -- Define the clipboard settings
-vim.cmd([[
-  if system('uname -r') =~ "microsoft"
-    augroup Yank
-    autocmd!
-    autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
-    augroup END
- endif
-"  augroup SHADA
-"     autocmd!
-"     autocmd CursorHold,TextYankPost,FocusGained,FocusLost *
-"                 \ if exists(':rshada') | rshada | wshada | endif
-" augroup END
-]])
+-- vim.cmd([[
+--   if system('uname -r') =~ "microsoft"
+--     augroup Yank
+--     autocmd!
+--     autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
+--     augroup END
+--  endif
+-- "  augroup SHADA
+-- "     autocmd!
+-- "     autocmd CursorHold,TextYankPost,FocusGained,FocusLost *
+-- "                 \ if exists(':rshada') | rshada | wshada | endif
+-- " augroup END
+-- ]])

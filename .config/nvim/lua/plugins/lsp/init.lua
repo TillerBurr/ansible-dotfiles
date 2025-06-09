@@ -346,6 +346,12 @@ return {
 								analysis = {
 									typeCheckingMode = "basic",
 									diagnosticMode = "openFilesOnly",
+                                    extraPaths = {
+                                        vim.fn.getcwd(),
+                                        vim.fn.getcwd() .. "./src",
+                                    },
+                                    venvPath = ".",
+                                    venv = ".venv",
 								},
 							},
 						},

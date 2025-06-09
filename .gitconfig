@@ -23,6 +23,11 @@
 
 	pom = push origin master
 
+    # Difftastic aliases, so `git dlog` is `git log` with difftastic and so on.
+    dlog = -c diff.external=difft log --ext-diff
+    dshow = -c diff.external=difft show --ext-diff
+    ddiff = -c diff.external=difft diff
+
 [url "https://github.com/"]
 	insteadOf = gh:
 
@@ -33,8 +38,8 @@
 
 [commit]
 	gpgsign = true
-[gpg]
-	program = /usr/bin/gpg2
+#[gpg]
+#	program = /usr/bin/gpg2
 [init]
 	defaultBranch = main
 # This is Git's per-user configuration file.
@@ -42,7 +47,6 @@
 # Please adapt and uncomment the following lines:
 	name = Tyler Baur
 	email = baur.tyler@gmail.com
-	signingkey = 5DE225DD223CFB0B
 
 [include]
 	path = ~/.gitconfig.local
@@ -74,7 +78,7 @@
 [commit]
 	gpgsign = true
 [gpg]
-	program = /usr/bin/gpg2
+	program = gpg
 [init]
 	defaultBranch = main
 

@@ -5,7 +5,7 @@ return{  {
     build = ":TSUpdate",
     config=function()
         require("nvim-treesitter.configs").setup {
-            ensure_installed = { "python", "cpp", "lua", "vim", "json", "toml","fish","markdown"},
+            ensure_installed = { "python", "cpp", "lua", "vim", "json", "toml","fish","markdown","http"},
             ignore_install = {}, -- List of parsers to ignore installing
             highlight = {
                 enable = true, -- false will disable the whole extension

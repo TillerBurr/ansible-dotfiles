@@ -28,3 +28,4 @@ vim.opt.isfname:append("@-@")
 vim.opt.colorcolumn = "89"
 vim.opt.eol = false  -- Prevents removing end-of-line character
 vim.opt.fixeol = true -- Ensures a newline is added at the end of files
+vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }

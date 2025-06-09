@@ -3,4 +3,4 @@
 gpgsign = true
 [user]
 # Please adapt and uncomment the following lines:
-signingkey = 612A0872DB255012
+signingkey = 9B1689B310E2D6E5

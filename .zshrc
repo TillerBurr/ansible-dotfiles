@@ -5,6 +5,8 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 path=("$HOME/.local/bin"
+    "/opt/homebrew/bin"
+    "/opt/homebrew/opt/postgresql@16/bin"
     "$HOME/.cargo/bin"
     "$HOME/chromedrivers"
     "$HOME/tools/lua-language-server/bin"
@@ -80,10 +82,19 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git python docker zoxide zsh-autosuggestions fast-syntax-highlighting you-should-use)
+plugins=(git python docker)
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
 # fast-theme XDG:catppuccin-frappe
+source $HOMEBREW_PREFIX/share/zsh-you-should-use/you-should-use.plugin.zsh
+source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ if type brew &>/dev/null; then
+     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
+     autoload -Uz compinit
+     compinit
+    fi
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -93,9 +104,9 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
+# Preferred editor for local and  remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
+#   export EDITOR='vimj'
 # else
 #   export EDITOR='nvim'
 # fi
@@ -128,7 +139,7 @@ fi
 
 # # Set configuration files for MISE
 export MISE_CONFIG_FILE="$HOME/.config/.mise.toml"
-mise_bin="$HOME/.local/bin/mise"
+mise_bin="/opt/homebrew/bin/mise"
 
 if command -v "$mise_bin" &> /dev/null; then
     eval "$($mise_bin activate -s zsh)"
@@ -151,3 +162,10 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init - zsh)"
 
 # export DISPLAY=$(ip route| awk '/^default/ {print $3}'):0
+# export DOCKER_DEFAULT_PLATFORM=linux/amd64
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/tbaur/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+eval "$(atuin init zsh)"
