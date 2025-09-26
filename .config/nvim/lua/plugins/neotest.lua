@@ -5,7 +5,7 @@ return {
 		"antoinemadec/FixCursorHold.nvim",
 		"nvim-treesitter/nvim-treesitter",
 		"nvim-neotest/neotest-python",
-		"folke/neodev.nvim",
+		"folke/neodev.nvim", -- Dependency is still needed
 	},
 	config = function()
 		require("neotest").setup({
@@ -26,8 +26,6 @@ return {
 			"<leader>dK",
 			'<cmd>lua require("neotest").run.run({vim.fn.expand("%"),strategy = "dap"})<cr>'
 		)
-		require("neodev").setup({
-			library = { plugins = { "neotest" }, types = true },
-		})
+		-- The redundant neodev.setup() call has been removed from here.
 	end,
 }

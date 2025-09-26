@@ -6,7 +6,8 @@ return {
       opts.ensure_installed = opts.ensure_installed or {}
       table.insert(opts.ensure_installed, "http")
     end,
-  },		main = 'rest-nvim',
+  },
+  main = 'rest-nvim',
 		ft = 'http',
 		cmd = 'Rest',
 		keys = {

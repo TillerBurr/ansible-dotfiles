@@ -1,4 +1,4 @@
-theme = catppuccin-frappe
+theme = Catppuccin Frappe
 shell-integration = zsh
 font-family = JetBrainsMono Nerd Font Mono
 mouse-hide-while-typing = true

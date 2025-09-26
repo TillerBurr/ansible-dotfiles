@@ -82,7 +82,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git python docker)
+plugins=(git docker)
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 # fast-theme XDG:catppuccin-frappe
@@ -127,23 +127,23 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # ~/.zshrc
 
-eval "$(starship init zsh)"
+
+export MISE_CONFIG_FILE="$HOME/.config/.mise.toml"
+mise_bin="/opt/homebrew/bin/mise"
+
+if command -v "$mise_bin" &> /dev/null; then
+    eval "$($mise_bin hook-env)"
+fi
 
 export UID=$(id -u)
 export GID=$(id -g)
-export UNAME=$(whoami)
+export USERNAME=$(whoami)
 
 if [[ -f "$HOME/.private" ]]; then
     source "$HOME/.private"
 fi
 
 # # Set configuration files for MISE
-export MISE_CONFIG_FILE="$HOME/.config/.mise.toml"
-mise_bin="/opt/homebrew/bin/mise"
-
-if command -v "$mise_bin" &> /dev/null; then
-    eval "$($mise_bin activate -s zsh)"
-fi
 
 # Initialize The Fuck if installed
 # if command -v thefuck &> /dev/null; then
@@ -155,10 +155,8 @@ export GPG_TTY=$(tty)
 export SBT_CREDENTIALS="/home/tbaur/.sbt/.credentials"
 # export GOOGLE_APPLICATION_CREDENTIALS="$HOME/.config/gcloud/application_default_credentials.json"
 
-eval "$(mcfly init zsh)"
-
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+# export PYENV_ROOT="$HOME/.pyenv"
+# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
 
 # export DISPLAY=$(ip route| awk '/^default/ {print $3}'):0
@@ -168,4 +166,10 @@ fpath=(/Users/tbaur/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
+
 eval "$(atuin init zsh)"
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+alias kswpdev="gcloud container clusters get-credentials meas-dev-gke --region us-central1 --project meas-dev-415919"
+alias kswpstaging="gcloud container clusters get-credentials meas-staging-gke --region us-central1 --project meas-staging"
+alias kswpprod="gcloud container clusters get-credentials meas-prod-gke --region us-central1 --project meas-prod-415919"

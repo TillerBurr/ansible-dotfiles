@@ -1,4 +1,5 @@
 require('tillerburr.global')
 require('tillerburr.options')
+require('tillerburr.commands')
 require('tillerburr.remap')
 require('tillerburr.lazy')

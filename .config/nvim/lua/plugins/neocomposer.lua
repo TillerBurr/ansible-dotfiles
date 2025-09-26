@@ -1,6 +1,6 @@
 return {
 	"ecthelionvi/NeoComposer.nvim",
-	dependencies = { "kkharji/sqlite.lua", "nvim-telescope/telescope.nvim", "nvim-lualine/lualine.nvim" },
+	dependencies = { "kkharji/sqlite.lua", "nvim-telescope/telescope.nvim" },
 	opts = {},
 	config = function()
 		require("NeoComposer").setup()
