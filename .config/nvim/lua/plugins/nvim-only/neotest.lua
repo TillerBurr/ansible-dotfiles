@@ -7,6 +7,7 @@ return {
 		"nvim-neotest/neotest-python",
 		"folke/neodev.nvim", -- Dependency is still needed
 	},
+    cond=not vim.g.vscode,
 	config = function()
 		require("neotest").setup({
 			adapters = {

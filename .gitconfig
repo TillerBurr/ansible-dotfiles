@@ -34,7 +34,6 @@
 [core]
 	autocrlf = input
 	filemode = false
-	editor = nano
 
 [commit]
 	gpgsign = true
@@ -73,7 +72,7 @@
 [core]
 	autocrlf = input
 	filemode = false
-	editor = nano
+	editor = nvim
 
 [commit]
 	gpgsign = true

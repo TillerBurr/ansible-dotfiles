@@ -1,0 +1,51 @@
+# Beads (bd) issue tracker — all commands allowed
+allow bd *
+
+# poetry/uv
+allow poetry run ruff *
+allow poetry run pytest *
+allow poetry run python -m pytest *
+allow uv run ruff *
+allow uv run pytest *
+allow uv run python -m pytest *
+allow uv run python -m ruff *
+allow uv run sqlfluff *
+
+# Atlassian MCP — read-only tools auto-approved
+allow-mcp mcp__plugin_atlassian_atlassian__get*
+allow-mcp mcp__plugin_atlassian_atlassian__search*
+allow-mcp mcp__plugin_atlassian_atlassian__lookup*
+
+# BigQuery read-only (mirrors settings.json Bash blocker)
+allow bq query *
+allow bq show *
+allow bq ls *
+allow bq head *
+
+allow uv run pytest *
+allow uv run ruff *
+
+# gcloud read-only — Composer logs / GCS inspection / Cloud Logging
+allow gcloud composer environments describe *
+allow gcloud composer environments list *
+allow gcloud storage ls *
+allow gcloud storage cat *
+allow gcloud storage cp *
+allow gcloud logging read *
+
+# BigQuery writes — blocked (DML/DDL within `bq query` still blocked at settings.json Bash hook)
+deny bq cp * "Writes blocked — read-only only (bq query/show/ls/head)"
+deny bq mk * "Writes blocked — read-only only"
+deny bq rm * "Writes blocked — read-only only"
+deny bq load * "Writes blocked — read-only only"
+deny bq extract * "Writes blocked — read-only only"
+deny bq update * "Writes blocked — read-only only"
+deny bq insert * "Writes blocked — read-only only"
+deny bq partition * "Writes blocked — read-only only"
+deny bq wait * "Writes blocked — read-only only"
+
+# gcloud writes — no destructive ops on Composer envs or GCS
+deny gcloud composer environments delete * "Destructive — blocked"
+deny gcloud composer environments update * "Mutating — blocked"
+deny gcloud storage rm * "Destructive — blocked"
+deny gcloud storage mv * "Mutating — blocked"

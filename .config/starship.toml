@@ -25,14 +25,14 @@ $docker_context\
 [](fg:#F8EFE0 bg:#3eb1a3)\
 $python\
 [ ](fg:#3eb1a3)\
+$fill\
+$battery\
+$time\
 $line_break\
 $character
 """
-right_format = """
-$battery\
-$time\
-$command_duration
-"""
+[fill]
+symbol = " "
 #✓
 # Set to true to avoid a two-line prompt
 [line_break]

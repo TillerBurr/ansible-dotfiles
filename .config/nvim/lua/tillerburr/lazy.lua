@@ -14,6 +14,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 
+-- This line tells lazy.nvim to look for a 'lua/plugins.lua' or 'lua/plugins/init.lua'
+-- file and use whatever specs are RETURNED by that file.
 require("lazy").setup("plugins",{
 ui={border={ "┏", "━", "┓", "┃", "┛", "━", "┗", "┃" }}})
 

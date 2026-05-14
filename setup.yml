@@ -74,6 +74,11 @@
       import_role:
         name: tmux
 
+    - name: Claude Code
+      tags: claude
+      import_role:
+        name: claude
+
     - name: Copy local git config
       copy:
         src: "./.gitconfig-local"

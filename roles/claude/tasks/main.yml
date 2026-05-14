@@ -1,0 +1,31 @@
+- name: Ensure ~/.claude directory tree exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.claude/{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - ""
+    - commands
+    - hooks
+    - skills
+
+- name: Symlink top-level Claude Code files from dotfiles repo
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/.claude/{{ item }}"
+    dest: "{{ ansible_env.HOME }}/.claude/{{ item }}"
+    state: link
+    force: true
+  loop:
+    - settings.json
+    - CLAUDE.md
+    - statusline-command.sh
+
+- name: Ensure hook scripts and statusline are executable in repo
+  ansible.builtin.file:
+    path: "{{ playbook_dir }}/.claude/{{ item }}"
+    mode: "0755"
+    state: file
+  loop:
+    - hooks/worktree-py-sync.sh
+    - hooks/git-unlock-stale.sh
+    - statusline-command.sh

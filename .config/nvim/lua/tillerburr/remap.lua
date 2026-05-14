@@ -66,3 +66,7 @@ keymap.set(
 )
 -- where the heck am I?
 keymap.set("n", "<leader>fl", ":lua print(vim.fn.expand('%'))<cr>", { desc = "Print CWD relative to project root" })
+
+if vim.g.vscode then
+    vim.api.nvim_set_keymap("n", "grr", ":lua require('vscode').call('editor.action.referenceSearch.trigger')<CR>", { desc = "Go to References" })
+end

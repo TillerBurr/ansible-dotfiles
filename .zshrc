@@ -3,6 +3,7 @@
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export UV_FROZEN=1
 
 path=("$HOME/.local/bin"
     "/opt/homebrew/bin"
@@ -94,6 +95,8 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
      autoload -Uz compinit
      compinit
+     zstyle ':completion:*:make:*:targets' call-command true
+     zstyle ':completion:*:*:make:*' tag-order 'targets'
     fi
 source $ZSH/oh-my-zsh.sh
 
@@ -133,6 +136,7 @@ mise_bin="/opt/homebrew/bin/mise"
 
 if command -v "$mise_bin" &> /dev/null; then
     eval "$($mise_bin hook-env)"
+    eval "$($mise_bin activate zsh)"
 fi
 
 export UID=$(id -u)
@@ -157,7 +161,7 @@ export SBT_CREDENTIALS="/home/tbaur/.sbt/.credentials"
 
 # export PYENV_ROOT="$HOME/.pyenv"
 # [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
+# eval "$(pyenv init - zsh)"
 
 # export DISPLAY=$(ip route| awk '/^default/ {print $3}'):0
 # export DOCKER_DEFAULT_PLATFORM=linux/amd64
