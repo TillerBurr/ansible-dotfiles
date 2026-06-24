@@ -18,6 +18,7 @@
   loop:
     - settings.json
     - CLAUDE.md
+    - graph-tool-routing.md
     - statusline-command.sh
 
 - name: Ensure hook scripts and statusline are executable in repo
@@ -28,4 +29,7 @@
   loop:
     - hooks/worktree-py-sync.sh
     - hooks/git-unlock-stale.sh
+    - hooks/crg-update.sh
+    - hooks/rtk-rewrite.sh
+    - hooks/session-start.sh
     - statusline-command.sh
