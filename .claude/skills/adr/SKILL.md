@@ -22,7 +22,7 @@ Run after a plan is settled (native plan mode approved, or `superpowers:writing-
 1. Confirm the decision clears the bar (contested / non-obvious). If not, stop and tell the user no ADR is needed.
 2. `TICKET=$(git branch --show-current | grep -oiE '[a-z]+-[0-9]+' | head -1 | tr a-z A-Z)`. Empty → ask.
 3. Choose `<slug>` (kebab-case, 2-4 words). Output path: `docs/architectural_decisions/<TICKET>-<slug>.md`.
-4. Copy `TEMPLATE.md` (beside this skill) to that path. Fill frontmatter (`ticket`, `title`, `date` = today) and: **Context**, **Decision**, **Alternatives rejected**, **Constraints**, **Consequences**. Leave **Revisions** (`_None yet._`) and **Outcome** (`_TBD_`) untouched.
+4. Copy `TEMPLATE.md` (beside this skill) to that path. Fill frontmatter (`ticket`, `title`) and: **Context**, **Decision**, **Alternatives rejected**, **Constraints**, **Consequences**. Leave **Revisions** (`_None yet._`) and **Outcome** (`_TBD_`) untouched.
 5. Add or update `docs/architectural_decisions/README.md`: a one-line index entry `- [NM-XXXX — title](NM-XXXX-slug.md) — status`. Create the README with a short header if absent.
 6. Report the path in one line. Do not commit unless asked.
 
@@ -31,7 +31,7 @@ Run after a plan is settled (native plan mode approved, or `superpowers:writing-
 The cheap path — this must stay one small action so it actually gets done. Use whenever a planned decision changes during implementation, while the reason is fresh.
 
 1. Find the branch's ADR under `docs/architectural_decisions/`.
-2. Append ONE entry to the **Revisions** section (replace `_None yet._` on the first): `- YYYY-MM-DD — <what changed>. Trigger: <what made the planned decision wrong>.`
+2. Append ONE entry to the **Revisions** section (replace `_None yet._` on the first): `- <what changed>. Trigger: <what made the planned decision wrong>.`
 3. Do NOT edit the Decision section. It stays as the original record.
 4. One-line confirmation.
 
@@ -53,15 +53,15 @@ Only from finalize, only when the decision produced a feature that will be read 
 
 **Pick the shape by size.** Default to the single file. Use the subfolder only when the feature already has, or clearly will have, multiple decisions or multiple docs — do not create a folder for one small doc.
 
-The immutable decision content moved from the ADR is the same in both shapes — Context, Decision, Alternatives rejected, Constraints, Consequences, Revisions (append-only), Outcome — always carrying the `<!-- IMMUTABLE -->` and `<!-- APPEND-ONLY -->` markers and a divider comment above it: `<!-- Below is the decision record for <TICKET>. IMMUTABLE except Revisions. Edit the living text, never this. -->`. Where it differs is frontmatter (below).
+The immutable decision content moved from the ADR is the same in both shapes — Context, Decision, Alternatives rejected, Constraints, Consequences, Revisions (append-only), Outcome — always carrying the `<!-- IMMUTABLE -->` and `<!-- APPEND-ONLY -->` markers and a divider comment above it: `<!-- Below is the decision record for <TICKET>. IMMUTABLE except Revisions. Edit the living text, never this. -->`. Where it differs is frontmatter (below). When you move the record, **condense Revisions into one brief combined list** — during the task they were a running one-per-change log; the permanent doc wants the net story, not the play-by-play.
 
 **Single file** (default) — `docs/<feature>.md`, named by feature not ticket:
 - **Living top** — how the feature works now, edited freely as it changes.
-- **Immutable bottom** — the decision record, keeping the ADR frontmatter (`ticket`, `status`, `date`).
+- **Immutable bottom** — the decision record, keeping the ADR frontmatter (`ticket`, `status`).
 
 **Subfolder** (multiple decisions/docs) — `docs/<feature>/`:
 - `README.md` — living, how it works now (so the folder opens to it; matches `docs/clean_room/`). Put any operational "when to use / check before reusing" guidance here, not in the log — it is usage, not rationale.
-- `decisions.md` — append-only decision log. **No file-level frontmatter** — a single-ticket header cannot front a multi-ticket log. Each promoted ADR is ONE entry: an `## <TICKET> — title` heading, an inline `_status: <status> · date: <date>_` line, then the record with its sections demoted one level (`## Decision` → `### Decision`). If `decisions.md` already exists, **append** the new entry at the end; never overwrite an existing one.
+- `decisions.md` — append-only decision log. **No file-level frontmatter and no status line** — a single-ticket header cannot front a multi-ticket log. Each promoted ADR is ONE entry: an `## <TICKET> — title` heading, then the record with its sections demoted one level (`## Decision` → `### Decision`). Mark a superseded entry in its heading (`## <TICKET> — title (superseded by NM-YYYY)`). If `decisions.md` already exists, **append** the new entry at the end; never overwrite an existing one.
 
 Then, either shape:
 1. **Repoint every reference to the old ADR path first.** `grep -rn '<TICKET>-<slug>' --include='*.py' --include='*.md'` and rewrite each hit (code docstrings, other docs) to the new doc path — a deleted ADR leaves dead links otherwise.

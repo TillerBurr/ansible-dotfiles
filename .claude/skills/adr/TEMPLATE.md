@@ -2,7 +2,6 @@
 ticket: NM-XXXX
 title: <short decision title>
 status: accepted        # accepted | superseded by NM-YYYY
-date: YYYY-MM-DD
 ---
 
 # NM-XXXX — <short decision title>
@@ -26,7 +25,7 @@ date: YYYY-MM-DD
 <!-- APPEND-ONLY. One entry each time the plan changes mid-implementation. Newest last. Never rewrite the Decision above. -->
 ## Revisions
 _None yet._
-<!-- 2026-01-01 — Changed X to Y. Trigger: <what made the planned decision wrong>. -->
+<!-- Changed X to Y. Trigger: <what made the planned decision wrong>. -->
 
 <!-- Filled at completion (finalize mode). Stays as-is until then; the finalize hook keys on the _TBD_ marker. -->
 ## Outcome
