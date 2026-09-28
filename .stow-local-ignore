@@ -17,3 +17,11 @@
 
 ^/\.stowrc
 ^/\.gitconfig-local
+
+\.DS_Store
+^/\.serena
+^/\.superpowers
+^/keyboard
+^/setup\.yml
+^/starship\.toml
+^/\.mise\.toml

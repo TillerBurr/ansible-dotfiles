@@ -9,18 +9,6 @@
     - hooks
     - skills
 
-- name: Symlink top-level Claude Code files from dotfiles repo
-  ansible.builtin.file:
-    src: "{{ playbook_dir }}/.claude/{{ item }}"
-    dest: "{{ ansible_env.HOME }}/.claude/{{ item }}"
-    state: link
-    force: true
-  loop:
-    - settings.json
-    - CLAUDE.md
-    - graph-tool-routing.md
-    - statusline-command.sh
-
 - name: Ensure hook scripts and statusline are executable in repo
   ansible.builtin.file:
     path: "{{ playbook_dir }}/.claude/{{ item }}"

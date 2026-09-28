@@ -4,6 +4,14 @@
     src: "{{ role_path }}/files/tillerburr.gpg"
     dest: "{{ ansible_env.HOME }}/tillerburr.gpg"
 
+- name: Install gpg-agent.conf
+  tags: [gpg, gpg-conf]
+  ansible.builtin.copy:
+    dest: "{{ ansible_env.HOME }}/.gnupg/gpg-agent.conf"
+    mode: "0600"
+    src: "{{ 'gpg-agent.conf.debian' if ansible_os_family == 'Debian' else omit }}"
+    content: "{{ 'pinentry-program /opt/homebrew/bin/pinentry-mac\n' if ansible_os_family == 'Darwin' else omit }}"
+
 - name: Import GPG key
   tags: gpg
   ansible.builtin.command: >

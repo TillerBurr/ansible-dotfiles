@@ -1,3 +1,16 @@
+- name: Pre-create dirs stow must descend into
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/{{ item }}"
+    state: directory
+    mode: "{{ '0700' if item == '.gnupg' else '0755' }}"
+  loop:
+    - .config
+    - .claude/hooks
+    - .claude/skills
+    - .claude/commands
+    - .local/bin
+    - .gnupg
+
 - name: Install stow
   when: ansible_os_family == 'Debian'
   become: true

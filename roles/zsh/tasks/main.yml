@@ -48,6 +48,7 @@
     depth: 1
 
 - name: Download catppuccin-frappe.ini from GitHub
+  when: ansible_os_family == 'Debian'
   ansible.builtin.get_url:
     url: "https://raw.githubusercontent.com/catppuccin/zsh-fsh/main/themes/catppuccin-frappe.ini"
     dest: "{{ lookup('env', 'XDG_CONFIG_HOME') | default(lookup('env', 'HOME') + '/.config') }}/catppuccin-frappe.ini"
