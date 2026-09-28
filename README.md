@@ -4,14 +4,16 @@ not installing properly/reproducibly.
 
 ## macOS (Apple Silicon)
 
+`git` on a fresh Mac prompts to install the Xcode command line tools; accept, then:
+
 ```sh
-git clone git@github.com:tillerburr/ansible-dotfiles.git
+git clone https://github.com/tillerburr/ansible-dotfiles.git
 cd ansible-dotfiles
 ./install
 ```
 
-`./install` installs the Xcode command line tools and Homebrew if missing, then Ansible and stow,
-then runs the playbook (packages come from `Brewfile`). Extra args pass through to
+`./install` installs Homebrew if missing, runs `brew bundle` (packages, Ansible and stow come
+from `Brewfile`), then runs the playbook. Extra args pass through to
 `ansible-playbook`, e.g. `./install --tags claude`.
 
 

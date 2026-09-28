@@ -18,6 +18,22 @@
     name: stow
     state: present
 
+- name: Find absolute ~/.claude links left by the old claude role
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.claude/{{ item }}"
+  loop: [settings.json, CLAUDE.md, graph-tool-routing.md, statusline-command.sh]
+  register: old_claude_links
+
+- name: Remove them
+  ansible.builtin.file:
+    path: "{{ item.stat.path }}"
+    state: absent
+  loop: "{{ old_claude_links.results }}"
+  loop_control:
+    label: "{{ item.item }}"
+  when: item.stat.islnk | default(false) and item.stat.lnk_source.startswith(playbook_dir)
+    and item.stat.lnk_target.startswith('/')
+
 - name: Run Stow
   shell: "stow . --target {{ ansible_env.HOME }} --verbose=2"
   register: result

@@ -1,4 +1,0 @@
-- name: Install Brewfile packages
-  ansible.builtin.command: brew bundle install --no-upgrade --file={{ playbook_dir }}/Brewfile
-  register: brew_bundle
-  changed_when: "'Installing' in brew_bundle.stdout"

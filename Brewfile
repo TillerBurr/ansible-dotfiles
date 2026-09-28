@@ -1,7 +1,6 @@
 tap "atlassian/acli"
 tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae"
 tap "hamed-elfayome/claude-usage"
-tap "homebrew/core"
 tap "jesseduffield/lazydocker"
 tap "ldayton/dippy"
 tap "manaflow-ai/cmux"

@@ -7,7 +7,7 @@ if [[ "$(uname)" == Darwin ]]; then
   xcode-select -p >/dev/null 2>&1 || { xcode-select --install; echo "Re-run after Xcode CLT finishes."; exit 1; }
   [[ -x /opt/homebrew/bin/brew ]] || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   eval "$(/opt/homebrew/bin/brew shellenv)"
-  brew install ansible stow
+  brew bundle install --no-upgrade --file=Brewfile  # needs a TTY: some casks sudo
   become=()  # every become task is Debian-only
 fi
 

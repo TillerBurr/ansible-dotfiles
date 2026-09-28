@@ -15,12 +15,6 @@
     when: ansible_os_family == 'Debian'
 
   tasks:
-    - name: macOS packages
-      tags: macos
-      import_role:
-        name: macos
-      when: ansible_os_family == 'Darwin'
-
     - name: Core Utils
       tags: core
       import_role:
