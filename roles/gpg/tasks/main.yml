@@ -10,7 +10,7 @@
     dest: "{{ ansible_env.HOME }}/.gnupg/gpg-agent.conf"
     mode: "0600"
     src: "{{ 'gpg-agent.conf.debian' if ansible_os_family == 'Debian' else omit }}"
-    content: "{{ 'pinentry-program /opt/homebrew/bin/pinentry-mac\n' if ansible_os_family == 'Darwin' else omit }}"
+    content: "{{ 'pinentry-program /opt/homebrew/bin/pinentry-mac\ndefault-cache-ttl 3600\n' if ansible_os_family == 'Darwin' else omit }}"
 
 - name: Import GPG key
   tags: gpg
