@@ -1,23 +1,15 @@
 [tools]
-nodejs=["18", "19"]
-python = "3.12.1"
-pnpm = "latest"
-pdm = "latest"
-java = "20.0.2"
-pipx="latest"
+bun = "latest"
 go = "latest"
-just = "latest"
 node = "20"
-zig = "latest"
-poetry = "1.8.3"
-
-[alias]
-# specify a custom repo url
-# note this will only be used if the plugin does not already exist
-python = 'https://github.com/jdxcode/rtx-python'
-pnpm ='https://github.com/jonathanmorley/asdf-pnpm'
-
+poetry = "1.8.4"
+python = "3.12"
+rust = "latest"
 
 [settings]
+idiomatic_version_file_enable_tools = ["python"]
 experimental = true
-python_compile = false
+# disable_tools = ["python"]
+
+[settings.python]
+compile = false
