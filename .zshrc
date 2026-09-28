@@ -85,11 +85,16 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git docker)
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-# fast-theme XDG:catppuccin-frappe
-source $HOMEBREW_PREFIX/share/zsh-you-should-use/you-should-use.plugin.zsh
-source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [[ -x /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    # fast-theme XDG:catppuccin-frappe
+    source $HOMEBREW_PREFIX/share/zsh-you-should-use/you-should-use.plugin.zsh
+    source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+else
+    # Linux: the zsh role clones these into $ZSH_CUSTOM/plugins
+    plugins+=(zsh-autosuggestions zsh-completions fast-syntax-highlighting)
+fi
  if type brew &>/dev/null; then
      FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
@@ -132,7 +137,7 @@ source $ZSH/oh-my-zsh.sh
 
 
 export MISE_CONFIG_FILE="$HOME/.config/.mise.toml"
-mise_bin="/opt/homebrew/bin/mise"
+mise_bin=$(command -v mise)
 
 if command -v "$mise_bin" &> /dev/null; then
     eval "$($mise_bin hook-env)"
