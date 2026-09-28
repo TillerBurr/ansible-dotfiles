@@ -21,3 +21,5 @@
     cmd: |
       {{ mise_bin }} trust {{ansible_env.HOME}}/.config/.mise.toml
       {{ mise_bin }} install
+  register: mise_install
+  changed_when: "'all tools are installed' not in mise_install.stdout + mise_install.stderr"

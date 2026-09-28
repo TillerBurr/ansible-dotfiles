@@ -10,6 +10,7 @@
     - .claude/commands
     - .local/bin
     - .gnupg
+    - .dippy
 
 - name: Install stow
   when: ansible_os_family == 'Debian'
