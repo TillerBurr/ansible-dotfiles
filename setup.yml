@@ -54,12 +54,6 @@
         name: rust
       when: ansible_os_family == 'Debian'
 
-    - name: rye
-      tags: rye
-      import_role:
-        name: rye
-      when: ansible_os_family == 'Debian'
-
     - name: Neovim
       tags: neovim
       import_role:

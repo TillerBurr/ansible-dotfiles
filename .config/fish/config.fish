@@ -54,7 +54,6 @@ if type -q $mise_bin
 end
 
 # source $HOME/.local/git-subrepo/.fish.rc
-fish_add_path -p ~/.rye/shims
 fish_add_path -p $DPRINT_INSTALL/bin
 
 # bit

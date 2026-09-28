@@ -9,7 +9,9 @@
     - python-venv
     - install
 
-  ansible.builtin.pip:
-    virtualenv: "{{ansible_env.HOME}}/tools/.venv"
-    virtualenv_command: "{{ansible_env.HOME}}/.rye/shims/python3 -m venv"
-    requirements: "{{role_path}}/files/requirements.txt"
+  vars:
+    mise: "{{ mise_bin | default(ansible_env.HOME + '/.local/bin/mise') }}"
+    venv: "{{ ansible_env.HOME }}/tools/.venv"
+  ansible.builtin.shell: |
+    {{ mise }} exec uv -- uv venv --python 3.12 {{ venv }}
+    {{ mise }} exec uv -- uv pip install --python {{ venv }}/bin/python -r {{ role_path }}/files/requirements.txt

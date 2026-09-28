@@ -4,6 +4,7 @@ go = "latest"
 node = "20"
 poetry = "1.8.4"
 python = "3.12"
+uv = "latest"
 rust = "latest"
 
 [settings]
