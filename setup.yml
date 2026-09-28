@@ -12,12 +12,20 @@
     become: true
     ansible.builtin.apt:
       update_cache: true
+    when: ansible_os_family == 'Debian'
 
   tasks:
+    - name: macOS packages
+      tags: macos
+      import_role:
+        name: macos
+      when: ansible_os_family == 'Darwin'
+
     - name: Core Utils
       tags: core
       import_role:
         name: core
+      when: ansible_os_family == 'Debian'
 
     - name: ZSH
       tags: zsh
@@ -33,6 +41,7 @@
       tags: fish
       import_role:
         name: fish
+      when: ansible_os_family == 'Debian'
 
     - name: Mise-en-place
       tags: mise
@@ -43,21 +52,25 @@
       tags: rust
       import_role:
         name: rust
+      when: ansible_os_family == 'Debian'
 
     - name: rye
       tags: rye
       import_role:
         name: rye
+      when: ansible_os_family == 'Debian'
 
     - name: Neovim
       tags: neovim
       import_role:
         name: neovim
+      when: ansible_os_family == 'Debian'
 
     - name: Terminal
       tags: terms
       import_role:
         name: terms
+      when: ansible_os_family == 'Debian'
 
     - name: SSH
       tags: ssh
@@ -88,3 +101,4 @@
       copy:
         src: "./.xinitrc"
         dest: "{{ ansible_env.HOME }}/.xinitrc"
+      when: ansible_os_family == 'Debian'

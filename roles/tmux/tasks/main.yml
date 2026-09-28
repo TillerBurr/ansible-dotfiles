@@ -1,4 +1,5 @@
 - name: Install Tmux
+  when: ansible_os_family == 'Debian'
   become: true
   ansible.builtin.apt:
     name: tmux

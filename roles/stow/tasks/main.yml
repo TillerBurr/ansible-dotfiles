@@ -1,4 +1,5 @@
 - name: Install stow
+  when: ansible_os_family == 'Debian'
   become: true
   apt:
     name: stow
