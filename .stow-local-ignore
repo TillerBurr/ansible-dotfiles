@@ -4,10 +4,12 @@
 ^/roles
 ^/hosts
 ^/deps
+^/docs
 ^/.ssh
 ^/custom_zsh
 
 ^/README.md
+^/Brewfile.*
 ^/setup-.*.yml
 ^/requirements.yml
 ^/ansible.cfg
