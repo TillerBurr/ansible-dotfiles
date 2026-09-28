@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")"
+
+become=(--ask-become-pass)
+if [[ "$(uname)" == Darwin ]]; then
+  xcode-select -p >/dev/null 2>&1 || { xcode-select --install; echo "Re-run after Xcode CLT finishes."; exit 1; }
+  [[ -x /opt/homebrew/bin/brew ]] || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  brew install ansible stow
+  become=()  # every become task is Debian-only
+fi
+
+ansible-playbook -i hosts ${become[@]+"${become[@]}"} --ask-vault-pass setup.yml "$@"
